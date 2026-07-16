@@ -1,0 +1,32 @@
+name: Atividade 02.5 - Criando múltiplos Jobs
+
+on:
+
+    push:
+
+jobs:
+
+    info-repositorio:
+
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout
+          uses: actions/checkout@v5
+        - name: Data e hora atual
+          run: date
+        - name: Versão do Git
+          run: git --version
+
+    validar-estrutura:
+
+        needs: info-repositorio
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout
+          uses: actions/checkout@v5
+        - name: Verifica README.md
+          run: test -f README.md || (echo "README.md não encontrado" && exit 1)
+        - name: Verifica LICENSE
+          run: test -f LICENSE || (echo "LICENSE não encontrado" && exit 1)
+        - name: Verifica .gitignore
+          run: test -f .gitignore || (echo ".gitignore não encontrado" && exit 1)
