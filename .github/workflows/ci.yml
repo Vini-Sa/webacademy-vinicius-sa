@@ -15,5 +15,15 @@ jobs:
           uses: actions/checkout@v5
         - name: Lista arquivos
           run: ls ${{ github.workspace }}
+        - name: Data e hora da execução
+          run: date
+        - name: Sistema operacional do runner
+          run: echo "${{ runner.os }}"
+        - name: Versão do Git
+          run: git --version
+        - name: Conteúdo do README.md
+          run: cat README.md
+        - name: Lista arquivos novamente
+          run: ls ${{ github.workspace }}
         - name: Status
           run: echo "Status ${{ job.status }}."
